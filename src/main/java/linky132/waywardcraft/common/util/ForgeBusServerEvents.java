@@ -42,7 +42,7 @@ public class ForgeBusServerEvents {
     @SubscribeEvent
     public static void addSpawn(BiomeLoadingEvent event) {
         if (event.getCategory() == Biome.BiomeCategory.PLAINS) {
-            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnInfo.Spawners(ModEntities.GHOST.get(), 100, 1, 5));
+            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnnfo.Spawners(ModEntities.GHOST.get(), 100, 1, 5));
         }
     }
 }
