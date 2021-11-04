@@ -7,6 +7,7 @@ import linky132.waywardcraft.common.registries.ModBlocks;
 import linky132.waywardcraft.common.registries.ModEntities;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -42,7 +43,7 @@ public class ForgeBusServerEvents {
     @SubscribeEvent
     public static void addSpawn(BiomeLoadingEvent event) {
         if (event.getCategory() == Biome.BiomeCategory.PLAINS) {
-            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnnfo.Spawners(ModEntities.GHOST.get(), 100, 1, 5));
+            event.getSpawns().getSpawner(MobCategory.MONSTER).add(new MobSpawnSettings.SpawnerData(ModEntities.GHOST.get(), 100, 1, 5));
         }
     }
 }
