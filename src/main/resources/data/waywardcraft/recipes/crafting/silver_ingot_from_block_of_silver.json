@@ -1,0 +1,13 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "waywardcraft:block_of_silver"
+    }
+  ],
+  "result":
+  {
+    "item": "waywardcraft:silver_ingot",
+    "count": 9
+  }
+}

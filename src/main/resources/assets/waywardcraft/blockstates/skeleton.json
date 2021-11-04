@@ -1,0 +1,35 @@
+{
+    "variants": {
+        "facing=north,half=lower": {
+            "model": "waywardcraft:block/skeleton_bottom",
+            "y": 180
+        },
+        "facing=north,half=upper": {
+            "model": "waywardcraft:block/skeleton_top",
+            "y": 180
+        },
+        "facing=east,half=lower": {
+            "model": "waywardcraft:block/skeleton_bottom",
+            "y": 270
+        },
+        "facing=east,half=upper": {
+            "model": "waywardcraft:block/skeleton_top",
+            "y": 270
+        },
+        "facing=south,half=lower": {
+            "model": "waywardcraft:block/skeleton_bottom"
+
+        },
+        "facing=south,half=upper": {
+            "model": "waywardcraft:block/skeleton_top"
+        },
+        "facing=west,half=lower": {
+            "model": "waywardcraft:block/skeleton_bottom",
+            "y": 90
+        },
+        "facing=west,half=upper": {
+            "model": "waywardcraft:block/skeleton_top",
+            "y": 90
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "block.waywardcraft.block_of_salt": "Block of Salt",
+    "block.waywardcraft.block_of_silver": "Block of Silver",
+    "block.waywardcraft.graveyard_dirt": "Graveyard Dirt",
+    "block.waywardcraft.salt": "Salt",
+    "block.waywardcraft.silver_ore": "Silver Ore",
+    "block.waywardcraft.skeleton": "Skeleton",
+
+    "item.waywardcraft.silver_ingot": "Silver Ingot",
+
+    "entity.waywardcraft.ghost": "Ghost",
+
+    "itemGroup.waywardcraft": "WaywardCraft"
+}

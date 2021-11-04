@@ -1,0 +1,14 @@
+{
+    "block.waywardcraft.block_of_salt": "\u0287l\u0250S \u025fo \u029e\u0254ol\u15fa",
+    "block.waywardcraft.block_of_silver": "\u0279\u01dd\u028cl\u1d09S \u025fo \u029e\u0254ol\u15fa",
+    "block.waywardcraft.graveyard_dirt": "\u0287\u0279\u1d09\u15e1 p\u0279\u0250\u028e\u01dd\u028c\u0250\u0279\u05e4",
+    "block.waywardcraft.salt": "\u0287l\u0250S",
+    "block.waywardcraft.silver_ore": "\u01dd\u0279O \u0279\u01dd\u028cl\u1d09S",
+    "block.waywardcraft.skeleton": "uo\u0287\u01ddl\u01dd\u029eS",
+
+    "item.waywardcraft.silver_ingot": "\u0287o\u0183uI \u0279\u01dd\u028cl\u1d09S",
+
+    "entity.waywardcraft.ghost": "\u0287so\u0265\u05e4",
+
+    "itemGroup.waywardcraft": "\u0287\u025f\u0250\u0279\u0186p\u0279\u0250\u028d\u028e\u0250M"
+}
