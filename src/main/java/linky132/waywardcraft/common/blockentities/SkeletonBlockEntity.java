@@ -1,10 +1,8 @@
 package linky132.waywardcraft.common.blockentities;
 
-import linky132.waywardcraft.common.entity.Ghost;
 import linky132.waywardcraft.common.registries.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 

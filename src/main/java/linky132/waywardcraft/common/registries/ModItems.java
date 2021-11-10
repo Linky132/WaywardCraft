@@ -1,9 +1,7 @@
 package linky132.waywardcraft.common.registries;
 
 import linky132.waywardcraft.WaywardCraft;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
