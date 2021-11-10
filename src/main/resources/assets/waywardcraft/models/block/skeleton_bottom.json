@@ -9,6 +9,7 @@
 			"name": "body",
 			"from": [4, 2.05, 12.2],
 			"to": [12, 6.05, 16.2],
+			"shade": false,
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 10.8, 8]},
 			"faces": {
 				"north": {"uv": [9, 12, 7, 14], "rotation": 180, "texture": "#0"},
@@ -38,6 +39,7 @@
 			"name": "right_arm",
 			"from": [12, 3.05, 12.2],
 			"to": [14, 5.05, 16.2],
+			"shade": false,
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 10.8, 8]},
 			"faces": {
 				"north": {"uv": [11.5, 12, 11, 13], "rotation": 180, "texture": "#0"},
@@ -67,6 +69,7 @@
 			"name": "right_leg",
 			"from": [9, 3.05, 0.2],
 			"to": [11, 5.05, 12.2],
+			"shade": false,
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, 10.8, 8]},
 			"faces": {
 				"north": {"uv": [1.5, 8, 1, 9], "rotation": 180, "texture": "#0"},

@@ -1,7 +1,9 @@
 package linky132.waywardcraft.common.registries;
 
 import linky132.waywardcraft.WaywardCraft;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -13,7 +15,8 @@ import net.minecraftforge.registries.ForgeRegistries;
  * Everything in the ITEMS DeferredRegister is actually registered in the main mod class ({@link WaywardCraft}).
  */
 public class ModItems {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, WaywardCraft.MOD_ID); // Create the deferred register for items
+    // Create DeferredRegister
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, WaywardCraft.MOD_ID);
 
     public static final RegistryObject<Item> SILVER_INGOT = ITEMS.register("silver_ingot", () -> new Item(new Item.Properties().tab(WaywardCraft.WAYWARDCRAFT_ITEMGROUP))); // Create and register Silver Ingot
 }

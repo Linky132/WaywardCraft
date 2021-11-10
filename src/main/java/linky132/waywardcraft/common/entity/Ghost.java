@@ -1,15 +1,21 @@
 package linky132.waywardcraft.common.entity;
 
 import linky132.waywardcraft.WaywardCraft;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.Squid;
+import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -18,10 +24,12 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class GhostEntity extends Monster implements IAnimatable {
+import java.util.Random;
+
+public class Ghost extends Monster implements IAnimatable {
     private AnimationFactory animationFactory = new AnimationFactory(this);
 
-    public GhostEntity(EntityType<? extends Monster> type, Level worldIn) {
+    public Ghost(EntityType<? extends Monster> type, Level worldIn) {
         super(type, worldIn);
     }
 
@@ -64,5 +72,21 @@ public class GhostEntity extends Monster implements IAnimatable {
 
     @Override
     public void checkDespawn() {
+        if (!this.level.isClientSide()) {
+            if (this.level.getDifficulty() == Difficulty.PEACEFUL) {
+                this.discard();
+            }
+        }
+    }
+
+    public static boolean checkGhostSpawnRules(EntityType<Ghost> entityType, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, Random random) {
+            if (levelAccessor.dayTime() > 13000 && levelAccessor.dayTime() < 24000 && levelAccessor.getDifficulty() != Difficulty.PEACEFUL && checkMobSpawnRules(entityType, levelAccessor, mobSpawnType, blockPos, random)) {
+                if (new Random().nextInt(100000) == 99999) {
+                    if (levelAccessor.getEntitiesOfClass(Ghost.class, entityType.getAABB(blockPos.getX(), blockPos.getY(), blockPos.getZ()).inflate(400.0D, 400.0D, 400.0D)).isEmpty()) {
+                        return true;
+                    }
+                }
+            }
+        return false;
     }
 }
