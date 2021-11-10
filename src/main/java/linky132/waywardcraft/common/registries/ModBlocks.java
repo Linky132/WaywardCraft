@@ -21,7 +21,7 @@ public class ModBlocks {
     // Create DeferredRegister
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, WaywardCraft.MOD_ID);
 
-    // Create and/or register blocks
+    // Create and/or register block
     public static final RegistryObject<Block> BLOCK_OF_SALT = BLOCKS.register("block_of_salt", () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1.5F, 1.5F).sound(SoundType.STONE).requiresCorrectToolForDrops())); // Create and register Block of Salt
     public static final RegistryObject<Block> BLOCK_OF_SILVER = BLOCKS.register("block_of_silver", () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(6.0F, 5.0F).sound(SoundType.METAL).requiresCorrectToolForDrops())); // Create and register Block of Silver
     public static final RegistryObject<Block> SKELETON = BLOCKS.register("skeleton", () -> new SkeletonBlock(Block.Properties.of(Material.STONE).sound(SoundType.BONE_BLOCK).strength(-1.0F, -1.0f).noOcclusion())); // Register Skeleton
