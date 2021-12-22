@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "waywardcraft:block_of_salt",
-    "waywardcraft:silver_block",
+    "waywardcraft:salt_rock",
+    "waywardcraft:block_of_silver",
     "waywardcraft:silver_ore"
   ]
 }

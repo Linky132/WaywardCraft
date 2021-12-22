@@ -1,6 +1,6 @@
 package linky132.waywardcraft.common.blockentities;
 
-import linky132.waywardcraft.common.registries.ModBlockEntities;
+import linky132.waywardcraft.common.registries.BlockEntitiesRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -12,7 +12,7 @@ public class SkeletonBlockEntity extends BlockEntity {
     private UUID ghostUUID;
 
     public SkeletonBlockEntity(BlockPos position, BlockState state) {
-        super(ModBlockEntities.SKELETON_BLOCKENTITY.get(), position, state);
+        super(BlockEntitiesRegistry.SKELETON_BLOCKENTITY.get(), position, state);
         this.ghostUUID = null;
     }
 
@@ -26,9 +26,9 @@ public class SkeletonBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag save(CompoundTag pTag) {
+    protected void saveAdditional(CompoundTag pTag) {
+        super.saveAdditional(pTag);
         pTag.putUUID("ghost", ghostUUID);
-        return super.save(pTag);
     }
 
     @Override

@@ -9,18 +9,20 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 
-public class SkeletonBlock extends Block implements EntityBlock, SimpleWaterloggedBlock {
+public class SkeletonBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final EnumProperty<DoubleBlockHalf> HALF = EnumProperty.create("half", DoubleBlockHalf.class);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -31,15 +33,15 @@ public class SkeletonBlock extends Block implements EntityBlock, SimpleWaterlogg
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_206840_1_) {
-        p_206840_1_.add(FACING, HALF, WATERLOGGED);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING, HALF, WATERLOGGED);
     }
 
     @Nullable
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext p_196258_1_) {
-        FluidState fluidstate = p_196258_1_.getLevel().getFluidState(p_196258_1_.getClickedPos());
-        return this.defaultBlockState().setValue(FACING, p_196258_1_.getHorizontalDirection()).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+    public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
+        FluidState fluidstate = blockPlaceContext.getLevel().getFluidState(blockPlaceContext.getClickedPos());
+        return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection()).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
     }
 
     @Nullable
@@ -56,32 +58,49 @@ public class SkeletonBlock extends Block implements EntityBlock, SimpleWaterlogg
     @Override
     public BlockState updateShape(BlockState pState, Direction pDirection, BlockState pNeighborState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pNeighborPos) {
         if (pState.getValue(WATERLOGGED)) {
-            pLevel.getLiquidTicks().scheduleTick(pCurrentPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
+            pLevel.scheduleTick(pCurrentPos, Fluids.WATER, Fluids.WATER.getTickDelay(pLevel));
         }
         return super.updateShape(pState, pDirection, pNeighborState, pLevel, pCurrentPos, pNeighborPos);
     }
 
     @Override
-    public void setPlacedBy(Level p_180633_1_, BlockPos p_180633_2_, BlockState p_180633_3_, @Nullable LivingEntity p_180633_4_, ItemStack p_180633_5_) {
-        if (!p_180633_1_.isClientSide) {
-            p_180633_1_.setBlock(p_180633_2_.relative(p_180633_3_.getValue(FACING)), p_180633_3_.setValue(HALF, DoubleBlockHalf.UPPER), Constants.BlockFlags.DEFAULT);
+    public void setPlacedBy(Level level, BlockPos blockPos, BlockState blockState, @Nullable LivingEntity livingEntity, ItemStack itemStack) {
+        if (!level.isClientSide) {
+            level.setBlock(blockPos.relative(blockState.getValue(FACING)), blockState.setValue(HALF, DoubleBlockHalf.UPPER), UPDATE_ALL);
         }
+        super.setPlacedBy(level, blockPos, blockState, livingEntity, itemStack);
     }
 
     @Override
-    public void onRemove(BlockState p_196243_1_, Level p_196243_2_, BlockPos p_196243_3_, BlockState p_196243_4_, boolean p_196243_5_) {
-        if (!p_196243_2_.isClientSide) {
-            if (p_196243_1_.getValue(HALF) == DoubleBlockHalf.LOWER) {
-                p_196243_2_.destroyBlock(p_196243_3_.relative(p_196243_1_.getValue(FACING)), false);
-            } else if (p_196243_1_.getValue(HALF) == DoubleBlockHalf.UPPER) {
-                p_196243_2_.destroyBlock(p_196243_3_.relative(p_196243_1_.getValue(FACING).getOpposite()), false);
+    public void onRemove(BlockState oldBlockState, Level level, BlockPos blockPos, BlockState newBlockState, boolean isMoving) {
+        if (!level.isClientSide) {
+            if (oldBlockState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+                level.destroyBlock(blockPos.relative(oldBlockState.getValue(FACING)), false);
+            } else if (oldBlockState.getValue(HALF) == DoubleBlockHalf.UPPER) {
+                level.destroyBlock(blockPos.relative(oldBlockState.getValue(FACING).getOpposite()), false);
             }
-            final SkeletonBlockEntity skeletonBlockEntity = (SkeletonBlockEntity) p_196243_2_.getBlockEntity(p_196243_3_);
+            final SkeletonBlockEntity skeletonBlockEntity = (SkeletonBlockEntity) level.getBlockEntity(blockPos);
             if (skeletonBlockEntity.getGhostUUID() != null) {
-                ServerLevel serverLevel = (ServerLevel) p_196243_2_;
+                ServerLevel serverLevel = (ServerLevel) level;
                 serverLevel.getEntity(skeletonBlockEntity.getGhostUUID()).kill();
             }
         }
-        super.onRemove(p_196243_1_, p_196243_2_, p_196243_3_, p_196243_4_, p_196243_5_);
+        super.onRemove(oldBlockState, level, blockPos, newBlockState, isMoving);
     }
+
+
+//    @Override
+//    @Nullable
+//    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_153212_, BlockState p_153213_, BlockEntityType<T> p_153214_) {
+//        if (!p_153212_.isClientSide) {
+//            return createTickerHelper(p_153214_, BlockEntitiesRegistry.SKELETON_BLOCKENTITY.get(), SkeletonBlock::printTickTock);
+//        }
+//        else {
+//            return null;
+//        }
+//    }
+//
+//    public static void printTickTock(Level level, BlockPos blockPos, BlockState blockState, SkeletonBlockEntity skeletonBlockEntity) {
+//        System.out.println("tick tock");
+//    }
 }

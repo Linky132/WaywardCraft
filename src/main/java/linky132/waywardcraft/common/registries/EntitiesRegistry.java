@@ -5,10 +5,9 @@ import linky132.waywardcraft.common.entity.Ghost;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 /**
  * This class registers most entities to the ENTITIES DeferredRegister.
@@ -16,8 +15,7 @@ import net.minecraftforge.registries.ForgeRegistries;
  * However, spawn eggs are still registered in the ITEMS DeferredRegister (the same DeferredRegister that all other items are registered in).
  * Everything in the ENTITIES DeferredRegister is actually registered in the main mod class ({@link WaywardCraft}).
  */
-@Mod.EventBusSubscriber(modid = WaywardCraft.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class ModEntities {
+public class EntitiesRegistry {
     // Create custom mob category
     public static final MobCategory RARE_CREATURE = MobCategory.create("rare_creature", "rare_creature", 1, false, false, 128);
 

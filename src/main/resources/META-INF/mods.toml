@@ -1,78 +1,37 @@
-# There are several mandatory fields (#mandatory), and many more that are optional (#optional).
-# The overall format is standard TOML format, v0.5.0.
-# Note that there are a couple of TOML lists in this file.
-# Find more information on toml format here:  https://github.com/toml-lang/toml
-
-# The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
-modLoader="javafml" # mandatory
-
-# A version range to match for said mod loader - for regular FML @Mod it will be the minecraft version (without the 1.)
-loaderVersion="[37,)" # mandatory
-
-# A URL to query for updates for this mod.
-# updateJSONURL="" # optional
-
-# A URL to refer people to when problems occur with this mod
-# issueTrackerURL="" # optional
-
-# A URL for the "homepage" for this mod, displayed in the mod UI
-# displayURL="" # optional
-
-# License for the mod
-license="MIT" # mandatory
-
-# A file name (in the root of the mod JAR) containing a logo for display
-# logoFile="" # optional
-
-# Extra credits for the mod
-credits="A special thank you to every member of the cast and crew of Supernatural for making such an incredible show and a loving family and inspiring me to make this mod. #AlwaysKeepFighting #SPNFamily" # optional
-
-# The author(s) of the mod
-authors="Linky132" # optional
-
-# A list of mods - how many allowed here is determined by the individual mod loader
-[[mods]] # mandatory
-
-# The modid of the mod
-modId="waywardcraft" # mandatory
-
-# The version number of the mod
-version="0.1.0" # mandatory
-
-# A display name for the mod
-displayName="WaywardCraft" # mandatory
-
-# The description text for the mod (multi line!) (# mandatory)
+modLoader="javafml"
+loaderVersion="[39,)"
+license="All rights reserved"
+issueTrackerURL="https://github.com/Linky132/WaywardCraft"
+[[mods]]
+modId="waywardcraft"
+version="1.18.1-1.0.0"
+displayName="WaywardCraft"
+#updateJSONURL=""
+#displayURL=""
+#logoFile=""
+credits="Credit and the rights for any concepts, characters, places, etc. that originate in Supernatural are property of The CW and/or any other relevant people who own the copyright to said concepts, characters, places, etc.."
+authors="Linky132"
 description='''
-WaywardCraft is a Minecraft adaption of the popular television show Supernatural. Hunt down monsters and fight demons, angels and even Leviathans in this mod!
-Do you want to break the 66 seals, make a deal with a crossroads demon, play "Carry on Wayward Son" on a jukebox? This is the mod for that. #AlwaysKeepFighting #SPNFamily
+WaywardCraft is a mod that aims to bring all key concepts from the TV show Supernatural into Minecraft.
+In this mod, you can live the life of a hunter, tracking down and killing ghosts, monsters, demons, angels, and more!
+
+I do not own the rights to Supernatural, all credit for that goes to The CW and any other relevant parties.
 '''
-# TODO: Add values to commented out parameters
-
-# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.waywardcraft]]
-modId="forge" # mandatory
-mandatory=true # mandatory
-versionRange="[37.0.0,)" # mandatory
-# An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
-ordering="NONE"
-# Side this dependency is applied on - BOTH, CLIENT or SERVER
-side="BOTH"
-
+    modId="forge"
+    mandatory=true
+    versionRange="[38,)"
+    ordering="NONE"
+    side="BOTH"
 [[dependencies.waywardcraft]]
-modId="minecraft" # mandatory
-mandatory=true # mandatory
-versionRange="[1.17.1,1.18)" # mandatory
-# An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
-ordering="NONE"
-# Side this dependency is applied on - BOTH, CLIENT or SERVER
-side="BOTH"
-
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18,1.19)"
+    ordering="NONE"
+    side="BOTH"
 [[dependencies.waywardcraft]]
-modId="geckolib3" # mandatory
-mandatory=true # mandatory
-versionRange="[3.0.1,)" # mandatory
-# An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
-ordering="NONE"
-# Side this dependency is applied on - BOTH, CLIENT or SERVER
-side="BOTH"
+    modId="geckolib3"
+    mandatory=true
+    versionRange="[1.18-forge-3.0.3,)"
+    ordering="NONE"
+    side="BOTH"

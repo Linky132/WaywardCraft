@@ -1,7 +1,7 @@
 package linky132.waywardcraft.common.util;
 
 import linky132.waywardcraft.WaywardCraft;
-import linky132.waywardcraft.common.registries.ModBlocks;
+import linky132.waywardcraft.common.registries.BlocksRegistry;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
@@ -19,6 +19,6 @@ public class WaywardCraftItemGroup extends CreativeModeTab {
      */
     @Override
     public ItemStack makeIcon() {
-        return new ItemStack(ModBlocks.GRAVEYARD_DIRT.get());
+        return new ItemStack(BlocksRegistry.GRAVEYARD_DIRT.get());
     }
 }

@@ -1,6 +1,6 @@
 {
    "parent": "block/cube_all",
    "textures": {
-       "all": "waywardcraft:block/block_of_salt"
+       "all": "waywardcraft:block/salt_rock"
    }
 }
