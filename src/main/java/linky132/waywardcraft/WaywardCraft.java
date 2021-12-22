@@ -36,6 +36,6 @@ public class WaywardCraft
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
-//        ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.SKELETON.get(), RenderType.cutout()); // Set custom render type for Skeleton
+//        .ItemBlockRenderTypes.setRenderLayer(BlocksRegistry.SKELETON.get(), RenderType.cutout()); // Set custom render type for Skeleton
     }
 }
