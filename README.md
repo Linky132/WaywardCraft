@@ -1,4 +1,4 @@
 # WaywardCraft
-WaywardCraft is a mod that aims to bring all key concepts from the TV show Supernatural into Minecraft.
+WaywardCraft is a mod that intends to bring the TV show Supernatural to Minecraft, including the ability to hunt monsters, ghosts, demons, angels, and even Leviathans!
 
-This mod is unreleased and still under construction. If this repository has not been updated in a while, that simply means that I am busy working on it and haven't pushed changes to the repository.
+Please note: this mod is still in the early stages of development and there is currently no timeline for when it will be released to the public. This file will be updated with every feature that I manage to fully incorporate into the mod (which as of now is zero).
