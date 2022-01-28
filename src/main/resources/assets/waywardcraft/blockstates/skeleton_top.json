@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "waywardcraft:block/skeleton_top",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "waywardcraft:block/skeleton_top",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "waywardcraft:block/skeleton_top"
+
+    },
+    "facing=west": {
+      "model": "waywardcraft:block/skeleton_top",
+      "y": 90
+    }
+  }
+}

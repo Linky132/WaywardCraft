@@ -1,10 +1,13 @@
 package linky132.waywardcraft.common.block;
 
+import linky132.waywardcraft.WaywardCraft;
 import linky132.waywardcraft.common.blockentities.SkeletonBlockEntity;
+import linky132.waywardcraft.common.registries.BlocksRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -19,22 +22,22 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nullable;
 
 public class SkeletonBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final EnumProperty<DoubleBlockHalf> HALF = EnumProperty.create("half", DoubleBlockHalf.class);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public SkeletonBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(HALF, DoubleBlockHalf.LOWER).setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, HALF, WATERLOGGED);
+        builder.add(FACING, WATERLOGGED);
     }
 
     @Nullable
@@ -64,43 +67,16 @@ public class SkeletonBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
     @Override
-    public void setPlacedBy(Level level, BlockPos blockPos, BlockState blockState, @Nullable LivingEntity livingEntity, ItemStack itemStack) {
-        if (!level.isClientSide) {
-            level.setBlock(blockPos.relative(blockState.getValue(FACING)), blockState.setValue(HALF, DoubleBlockHalf.UPPER), UPDATE_ALL);
-        }
-        super.setPlacedBy(level, blockPos, blockState, livingEntity, itemStack);
-    }
-
-    @Override
     public void onRemove(BlockState oldBlockState, Level level, BlockPos blockPos, BlockState newBlockState, boolean isMoving) {
         if (!level.isClientSide) {
-            if (oldBlockState.getValue(HALF) == DoubleBlockHalf.LOWER) {
-                level.destroyBlock(blockPos.relative(oldBlockState.getValue(FACING)), false);
-            } else if (oldBlockState.getValue(HALF) == DoubleBlockHalf.UPPER) {
-                level.destroyBlock(blockPos.relative(oldBlockState.getValue(FACING).getOpposite()), false);
-            }
             final SkeletonBlockEntity skeletonBlockEntity = (SkeletonBlockEntity) level.getBlockEntity(blockPos);
             if (skeletonBlockEntity.getGhostUUID() != null) {
                 ServerLevel serverLevel = (ServerLevel) level;
                 serverLevel.getEntity(skeletonBlockEntity.getGhostUUID()).kill();
+            } else {
+                WaywardCraft.LOGGER.warn("At the time of removal, this block was not connected to a ghost. This could mean that this block was placed in the world by cheats such as commands. Or this could mean that an error occurred and a ghost was not successfully attached to this block. If it was the latter case, the ghost that this block was supposed to be attached to is now COMPLETELY UNKILLABLE. The only way to kill the ghost would be via cheats.");
             }
         }
         super.onRemove(oldBlockState, level, blockPos, newBlockState, isMoving);
     }
-
-
-//    @Override
-//    @Nullable
-//    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_153212_, BlockState p_153213_, BlockEntityType<T> p_153214_) {
-//        if (!p_153212_.isClientSide) {
-//            return createTickerHelper(p_153214_, BlockEntitiesRegistry.SKELETON_BLOCKENTITY.get(), SkeletonBlock::printTickTock);
-//        }
-//        else {
-//            return null;
-//        }
-//    }
-//
-//    public static void printTickTock(Level level, BlockPos blockPos, BlockState blockState, SkeletonBlockEntity skeletonBlockEntity) {
-//        System.out.println("tick tock");
-//    }
 }

@@ -1,7 +1,9 @@
 package linky132.waywardcraft.common.entity;
 
 import linky132.waywardcraft.WaywardCraft;
+import linky132.waywardcraft.common.registries.StructuresRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
@@ -12,8 +14,14 @@ import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.MapItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.saveddata.maps.MapDecoration;
+import net.minecraft.world.level.saveddata.maps.MapItemSavedData;
+import net.minecraft.world.level.storage.loot.functions.ExplorationMapFunction;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -75,16 +83,5 @@ public class Ghost extends Monster implements IAnimatable {
                 this.discard();
             }
         }
-    }
-
-    public static boolean checkGhostSpawnRules(EntityType<Ghost> entityType, LevelAccessor levelAccessor, MobSpawnType mobSpawnType, BlockPos blockPos, Random random) {
-            if (levelAccessor.dayTime() > 13000 && levelAccessor.dayTime() < 24000 && levelAccessor.getDifficulty() != Difficulty.PEACEFUL && checkMobSpawnRules(entityType, levelAccessor, mobSpawnType, blockPos, random)) {
-                if (new Random().nextInt(100000) == 99999) {
-                    if (levelAccessor.getEntitiesOfClass(Ghost.class, entityType.getAABB(blockPos.getX(), blockPos.getY(), blockPos.getZ()).inflate(400.0D, 400.0D, 400.0D)).isEmpty()) {
-                        return true;
-                    }
-                }
-            }
-        return false;
     }
 }

@@ -32,6 +32,6 @@ I do not own the rights to Supernatural, all credit for that goes to The CW and 
 [[dependencies.waywardcraft]]
     modId="geckolib3"
     mandatory=true
-    versionRange="[1.18-forge-3.0.3,)"
+    versionRange="[1.18-forge-3.0.0,)"
     ordering="NONE"
     side="BOTH"

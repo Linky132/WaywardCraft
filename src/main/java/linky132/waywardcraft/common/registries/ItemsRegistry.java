@@ -16,5 +16,5 @@ public class ItemsRegistry {
     // Create DeferredRegister
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, WaywardCraft.MOD_ID);
 
-    public static final RegistryObject<Item> SILVER_INGOT = ITEMS.register("silver_ingot", () -> new Item(new Item.Properties().tab(WaywardCraft.WAYWARDCRAFT_ITEMGROUP))); // Create and register Silver Ingot
+    public static final RegistryObject<Item> SILVER_INGOT = ITEMS.register("silver_ingot", () -> new Item(new Item.Properties().tab(WaywardCraft.WAYWARDCRAFT_CREATIVE_TAB))); // Create and register Silver Ingot
 }
